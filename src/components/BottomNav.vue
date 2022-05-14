@@ -8,17 +8,17 @@
     v-model="activeItem"
     class="bottom-nav"
   >
-    <v-btn value="calendar" class="n-a-bottom">
-      <span>Календарь</span>
-      <v-icon>calendar_view_month</v-icon>
+    <v-btn value="calendar" class="n-a-bottom" @click="GoToPage('/calendars')">
+    <span>Календарь</span>
+    <v-icon>calendar_view_month</v-icon>
     </v-btn>
 
-    <v-btn value="chats" class="n-a-bottom">
+    <v-btn value="chats" class="n-a-bottom" @click="GoToPage('/chats')">
       <span>Чаты</span>
       <v-icon>wechat</v-icon>
     </v-btn>
 
-    <v-btn value="characters" class="n-a-bottom">
+    <v-btn value="characters" class="n-a-bottom" @click="GoToPage('/characters')">
       <span>Персонажи</span>
       <v-icon>list_alt</v-icon>
     </v-btn>
@@ -32,7 +32,12 @@
     data: () => ({
         BottomNav: true,
         activeItem: "chats"
-    })
+    }),
+    methods: {
+        GoToPage (url) {
+            this.$router.push (url)
+        }
+    }
   }
 
 </script>
