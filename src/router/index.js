@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import CalendarsView from '../views/CalendarsView.vue'
 import ChatsView from '../views/ChatsView.vue'
 import CharactersView from '../views/CharactersView.vue'
+import ChatView from '../views/ChatView.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/characters',
     name: 'characters',
     component: CharactersView
+  },
+  {
+    path: '/chat',
+    name: 'chat',
+    component: ChatView
   }
 ]
 
