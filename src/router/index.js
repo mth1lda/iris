@@ -5,6 +5,7 @@ import CalendarsView from '../views/CalendarsView.vue'
 import ChatsView from '../views/ChatsView.vue'
 import CharactersView from '../views/CharactersView.vue'
 import ChatView from '../views/ChatView.vue'
+import LogInView from '../views/LogInView.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/chat/:chat_id',
     name: 'chat',
     component: ChatView
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LogInView
   }
 ]
 
