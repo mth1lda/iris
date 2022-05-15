@@ -30,7 +30,7 @@ const routes = [
     component: CharactersView
   },
   {
-    path: '/chat',
+    path: '/chat/:chat_id',
     name: 'chat',
     component: ChatView
   }

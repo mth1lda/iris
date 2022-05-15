@@ -8,7 +8,7 @@
 export default {
     name: 'text-message',
     props: {
-        type: {type: Number, default: 1}, text: {type: String, default: 'sdfghjkl'}
+        type: {type: Number, default: 1}, text: {type: String, default: ''}
 
     }
 }

@@ -2,8 +2,8 @@
   <div class="chats">
     <h1>а тут много чатиков</h1>
     <v-list two-line>
-        <chat-preview :title="'другой чатик'"/>
-        <chat-preview />
+        <chat-preview :title="'другой чатик'" :chat_id="1"/>
+        <chat-preview :chat_id="2"/>
         <chat-preview />
         <chat-preview />
         <chat-preview />

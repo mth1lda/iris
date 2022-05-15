@@ -1,6 +1,6 @@
 <template>
   <div class="chat">
-    <h1>Мария, смотри, у меня шиза</h1>
+    <h1>Мария, смотри, у меня шиза{{$route.params.chat_id}}</h1>
     <v-list two-line>
         <text-message :type="1" :text="'я даша'" />
         <text-message :type="2" :text="'я тоже'"/>

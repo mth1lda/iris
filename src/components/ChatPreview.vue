@@ -1,5 +1,5 @@
 <template>
-    <v-list-item
+    <v-list-item @click="GoToChat()"
         ripple
     >
         <v-list-item-avatar>
@@ -23,7 +23,13 @@
     props: {
         avatar: {type: String, default: require('../assets/avatar.png')},
         title: {type: String, default: 'первый чатик'},
-        subtitle: {type: String, default: 'приветик'}
+        subtitle: {type: String, default: 'приветик'},
+        chat_id: {type: Number, default: 1}
+    },
+    methods: {
+        GoToChat () {
+            this.$router.push ('chat/'+this.chat_id)
+        }
     }
   }
 </script>
