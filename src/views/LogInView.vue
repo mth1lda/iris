@@ -13,7 +13,7 @@
         type="password"
         ></v-text-field>
 
-        <v-btn block>
+        <v-btn block @click="login">
             Log In
         </v-btn>
     </div>
@@ -24,7 +24,17 @@ export default {
     data: () => ({
         name: '',
         password: ''
-    })
+    }),
+    methods: {
+         login() {
+             this.axios.post('/api/login', {
+                 name: this.name,
+                 password: this.password
+             }).then(responce=>{
+                 console.log(responce)
+             })
+        }
+    }
 }
 </script>
 

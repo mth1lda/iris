@@ -1,4 +1,4 @@
-const { Sequelize, DataTypes } = require('sequelize') //
+const { Sequelize, DataTypes } = require('sequelize') //orm система
 const sequelize = new Sequelize('postgres://postgres:Jhsy0P0asg@localhost:5432/test') //строка подключения, пароль
 
 const User = sequelize.define(
@@ -7,14 +7,14 @@ const User = sequelize.define(
         //таблица пользователей
         id: {
             type: DataTypes.INTEGER,
-            autoIncrement: true,
+            autoIncrement: true, //увеличивается на 1
             primaryKey: true,
             allowNull: false,
         },
         name: {
             type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
+            allowNull: false, //поле имя обязательно
+            unique: true, // уникальное имя
         },
         password: {
             type: DataTypes.STRING,
@@ -31,7 +31,6 @@ User.sync() //таблица
 const Chats = sequelize.define(
     'Chats',
     {
-        //таблица пользователей
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -100,11 +99,26 @@ app.post('/api/login', function (req, res) {
 
 })
 
+app.post('/api/chats', function (req, res) {
+    Chats.create({
+        title: req.body.title,
+        avatar: req.body.avatar
+    }).then(function(data){
+        return res.send(data)
+    })
+})
+
+
+
 //маршруты приложения, чтобы работала vue
 app.use('/', serveStatic(path.join(__dirname, '/dist')))
 
+app.get('/login',function (req, res) {
+    res.sendFile(path.join(__dirname, '/dist/index.html'))
+})
+
 // this * route is to serve project on different page routes except root `/`
-app.get(/.*/, function (req, res) {
+app.get(/.*/, authenticateToken,function (req, res) {
     res.sendFile(path.join(__dirname, '/dist/index.html'))
 })
 
