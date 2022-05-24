@@ -27,11 +27,11 @@ export default {
     }),
     methods: {
          login() {
-             this.axios.post('/api/login', {
+             this.axios.post('http://localhost:8000/api/login', {
                  name: this.name,
                  password: this.password
              }).then(responce=>{
-                 console.log(responce)
+                 localStorage.token=responce.data
              })
         }
     }

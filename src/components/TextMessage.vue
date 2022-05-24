@@ -1,52 +1,61 @@
 <template>
-    <div :class="{'role-from-message': type==1, 'role-to-message': type==2, 'out-of-role-from-message': type==3, 'out-of-role-to-message': type==4}">
-    {{text}}
+  <!-- <div :class="{'role-from-message': type==1, 'role-to-message': type==2, 'out-of-role-from-message': type==3, 'out-of-role-to-message': type==4}"> -->
+  <div :class="'message-' + type">
+    <div :class="type">
+      {{ text }}
     </div>
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'text-message',
-    props: {
-        type: {type: Number, default: 1}, text: {type: String, default: ''}
-
-    }
-}
+  name: "text-message",
+  props: {
+    type: { type: String, default: "" },
+    text: { type: String, default: "" },
+  },
+};
 </script>
 
 <style scoped>
-    .role-from-message {
-        padding: 20px;
-        margin: 20px;
+.role-message-from-user {
+  padding: 14px;
+  margin: 16px;
 
-        background: #D3DEED;
-        border-radius: 20px;
-    }
-    .role-to-message {
-        padding: 20px;
-        margin: 20px;
+  background: #b0c4de;
+  border-radius: 20px;
+}
 
-        background: #B0C4DE;
-        border-radius: 20px;
-    }
-    .out-of-role-from-message {
-        padding: 20px;
-        margin: 20px;
-        float: left;
-        width: 70%;
+.role-message-to-user {
+  padding: 14px;
+  margin: 16px;
 
-        color: white;
-        background: #678DC2;
-        border-radius: 20px;
-    }
-    .out-of-role-to-message {
-        padding: 20px;
-        margin: 20px;
-        float: right;
-        width: 70%;
+  background: #d3deed;
+  border-radius: 20px;
+}
 
-        color: white;
-        background: #678DC2;
-        border-radius: 20px;
-    }
+.out-of-role-message-from-user {
+  padding: 14px;
+  margin: 16px;
+  width: 68%;
+
+  color: white;
+  background: #678dc2;
+  border-radius: 20px;
+}
+
+.out-of-role-message-to-user {
+  padding: 14px;
+  margin: 16px;
+  width: 68%;
+
+  color: white;
+  background: #678dc2;
+  border-radius: 20px;
+}
+
+.message-out-of-role-message-from-user {
+    display: flex;
+    justify-content: end;
+}
 </style>

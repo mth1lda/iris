@@ -45,6 +45,10 @@ const Chats = sequelize.define(
             type: DataTypes.STRING,
             allowNull: true,
         },
+        description: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
         json: {
             type: DataTypes.JSONB,
             allowNull: true,
@@ -80,9 +84,14 @@ function authenticateToken(req, res, next) {
 const express = require('express')
 const serveStatic = require('serve-static')
 const path = require('path')
+const cors = require('cors')
 
 const app = express()
+app.use(cors())
 app.use(express.json())
+
+
+
 //
 app.post('/api/login', function (req, res) {
     User.findOne({
@@ -99,13 +108,22 @@ app.post('/api/login', function (req, res) {
 
 })
 
-app.post('/api/chats', function (req, res) {
+//серверный метод на создание чатов
+app.post('/api/chats',authenticateToken, function (req, res) {
     Chats.create({
         title: req.body.title,
-        avatar: req.body.avatar
+        avatar: req.body.avatar,
+        description: req.body.description
     }).then(function(data){
         return res.send(data)
     })
+})
+
+app.get('/api/chats',authenticateToken, function (req, res) {
+    Chats.findAll().then(function(data){
+        return res.send(data)
+    })
+    
 })
 
 
@@ -122,6 +140,6 @@ app.get(/.*/, authenticateToken,function (req, res) {
     res.sendFile(path.join(__dirname, '/dist/index.html'))
 })
 
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 8000
 app.listen(port)
 console.log(`app is listening on port: ${port}`)
